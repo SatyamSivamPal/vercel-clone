@@ -17,7 +17,7 @@ WORKDIR /home/app
 # copy the file
 COPY main.sh main.sh
 COPY script.js script.js
-COPY package*.json .
+COPY package*.json ./
 
 RUN npm install
 
