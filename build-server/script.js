@@ -50,7 +50,7 @@ async function init() {
             //ON S3 ONLY FILE IS UPLOAD NOT THE FOLDER
             const command = new PutObjectCommand({
                 Bucket: 'vercel-clone-satyam',
-                Key: `__outputs/${PROJECT_ID}/${filePath}`,
+                Key: `__outputs/${PROJECT_ID}/${file}`,
                 Body: fs.createReadStream(filePath),
                 ContentType: mime.lookup(filePath)
             })
