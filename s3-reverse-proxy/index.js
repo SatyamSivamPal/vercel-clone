@@ -7,6 +7,10 @@ const BASE_PATH = 'https://vercel-clone-satyam.s3.amazonaws.com/__outputs'
 
 const proxy = httpProxy.createProxy();
 
+app.get('/' , (req, res) => {
+    res.send('Hello-world')
+})
+
 app.use((req, res) => {
     const hostName = req.hostname;
     const subdomain = hostName.split('.')[0];
