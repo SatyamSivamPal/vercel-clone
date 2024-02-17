@@ -5,7 +5,7 @@ const app = express();
 const PORT = 8000
 const BASE_PATH = 'https://vercel-clone-satyam.s3.amazonaws.com/__outputs'
 
-const proxy = httpProxy.createProxy();
+const proxy = httpProxy.createProxyServer({});
 
 app.get('/' , (req, res) => {
     res.send('Hello-world')
@@ -17,7 +17,10 @@ app.use((req, res) => {
 
     const resolveTo = `${BASE_PATH}/${subdomain}`
 
-    return proxy.web(req, res, {target: resolveTo, changeOrigin: true })
+    proxy.web(req, res, { target: resolveTo, changeOrigin: true }, (err) => {
+        console.error('Proxy error:', err);
+        res.status(500).send('Proxy error occurred.');
+    });
 })
 
 app.listen(PORT, () => console.log(`Reverse Proxy is runnig ... ${PORT}`))
