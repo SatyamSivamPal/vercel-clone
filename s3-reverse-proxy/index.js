@@ -12,11 +12,11 @@ app.get('/' , (req, res) => {
 })
 
 app.use((req, res) => {
-    const hostName = req.hostname;
-    const subdomain = hostName.split('.')[0];
+    const hostname = req.hostname;
+    const subdomain = hostname.split('.')[0];
 
     const resolveTo = `${BASE_PATH}/${subdomain}`
-    return proxy.web(req, res, {target: resolveTo, changeOrigin: true})
+    return proxy.web(req, res, {target: resolveTo, changeOrigin: true })
 })
 
 app.listen(PORT, () => console.log(`Reverse Proxy is runnig ... ${PORT}`))
