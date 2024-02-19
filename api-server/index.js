@@ -27,7 +27,7 @@ app.use('/project', async (req, res) => {
     //ECS
     const command = new RunTaskCommand({
         cluster: config.CLUSTER,
-        taskDefintion: config.TASK,
+        taskDefinition: config.TASK,
         launchType: 'FARGATE',
         count: 1,
         networkConfiguration: {
