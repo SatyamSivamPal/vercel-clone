@@ -5,10 +5,11 @@ const app = express();
 const PORT = 8000
 const BASE_PATH = 'https://vercel-clone-satyam.s3.amazonaws.com/__outputs'
 
+
 const proxy = httpProxy.createProxyServer({});
 
 app.get('/' , (req, res) => {
-    res.send('Hello-world')
+    res.send('Hello Satyam :)')
 })
 
 app.use((req, res) => {
@@ -21,6 +22,15 @@ app.use((req, res) => {
         console.error('Proxy error:', err);
         res.status(500).send('Proxy error occurred.');
     });
+})
+
+proxy.on('proxyReq', (proxyReq, req, res) => {
+    const url = req.url;
+
+    if(url === '/' )
+    {
+        proxyReq.path += 'index.html';
+    }
 })
 
 app.listen(PORT, () => console.log(`Reverse Proxy is runnig ... ${PORT}`))
