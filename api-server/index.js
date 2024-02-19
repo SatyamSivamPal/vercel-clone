@@ -9,7 +9,7 @@ const ecsClient = new ECSClient({
     region: 'us-east-1',
     credentials: {
         accessKeyId: 'AKIA3FLD435BYOSAZU6H',
-        secretAccessKey: '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',
+        secretAccessKey: 'h33KKZXbJ74vCt5pQP6ope+uidQIOxDRI6xui/QY'
     }
 })
 
@@ -21,7 +21,7 @@ const config = {
 app.use(express.json());
 
 app.use('/project', async (req, res) => {
-    const {gitUrl} = req.body;
+    const {gitURL} = req.body;
     const projectSlug = generateSlug();
 
     //ECS
@@ -42,7 +42,7 @@ app.use('/project', async (req, res) => {
                 {
                     name: 'builder-image',
                     environment: [
-                        {name: 'GIT_REPOSITORY__URL', value: gitUrl},
+                        {name: 'GIT_REPOSITORY__URL', value: gitURL},
                         {name: 'PROJECT_ID', value: projectSlug}
                     ]
                 }
