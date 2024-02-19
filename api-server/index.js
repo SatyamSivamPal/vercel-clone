@@ -5,7 +5,7 @@ const { RunTaskCommand, ECSClient} = require('@aws-sdk/client-ecs');
 const app = express();
 const PORT = 9000;
 
-const ECSClient = new ECSClient({
+const ecsClient = new ECSClient({
     region: 'us-east-1',
     credentials: {
         accessKeyId: 'AKIA3FLD435BYOSAZU6H',
@@ -49,7 +49,7 @@ app.use('/project', async (req, res) => {
             ]
         }
     })
-    await ECSClient.send(command);
+    await ecsClient.send(command);
     return res.json({ status: 'queued', data: {projectSlug, url: `http://${projectSlug}.localhost:8000`}})
 })
 
